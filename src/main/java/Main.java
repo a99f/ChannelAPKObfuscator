@@ -1,5 +1,3 @@
-package com;
-
 import com.a99f.pack.ApkOperation;
 
 /**
