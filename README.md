@@ -13,5 +13,4 @@ Specifically designed for Flutter project, in each time to type out the APK pack
 
 In order to solve this problem, we embed channel information under assets location during packaging, and can read the call channel when the App is launched, and unpacking check sign is done automatically, and then use 360 reinforcement obfuscation command line for reinforcement service.
 
-
-
+![avatar](./resource/assets/flow-chart/基本流程.jpg)
