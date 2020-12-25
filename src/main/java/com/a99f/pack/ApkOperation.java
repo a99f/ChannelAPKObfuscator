@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
-import static com.dzm.apkqudao.ZipUtil.unZip;
 import static com.a99f.pack.utils.ReadINI.readIni;
+import static com.a99f.pack.utils.ZipUtil.unZip;
 
 public class ApkOperation {
     //加固登录名
