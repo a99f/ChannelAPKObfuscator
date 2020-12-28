@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
+import static com.a99f.pack.constans.Constans.INI_PATH;
+import static com.a99f.pack.utils.ReadINI.getIniData;
 import static com.a99f.pack.utils.ReadINI.readIni;
 import static com.a99f.pack.utils.ZipUtil.unZip;
 
@@ -46,35 +48,34 @@ public class ApkOperation {
      * 执行APK操作
      */
     public static void doAPKOperation() {
-        Map<String, Object> ini = readIni("resource/config/config.ini");
         //加固登录名
-        JIAGU_LOGIN_NAME = getIniData(ini, "jiagu", "LOGIN_NAME");
+        JIAGU_LOGIN_NAME = getIniData("jiagu", "LOGIN_NAME");
         //加固密码
-        JIAGU_LOGIN_PASSWORD = getIniData(ini, "jiagu", "LOGIN_PASSWORD");
+        JIAGU_LOGIN_PASSWORD = getIniData("jiagu", "LOGIN_PASSWORD");
         //密钥存储路径
-        STORE_PATH = getIniData(ini, "keystore", "STORE_PATH");
+        STORE_PATH = getIniData("keystore", "STORE_PATH");
         //密钥密码
-        STORE_PASSWORD = getIniData(ini, "keystore", "STORE_PASSWORD");
+        STORE_PASSWORD = getIniData("keystore", "STORE_PASSWORD");
         //密钥KEY别名
-        KEY_ALIAS = getIniData(ini, "keystore", "KEY_ALIAS");
+        KEY_ALIAS = getIniData("keystore", "KEY_ALIAS");
         //密钥别名密码
-        KEY_ALIAS_PASSWORD = getIniData(ini, "keystore", "KEY_ALIAS_PASSWORD");
+        KEY_ALIAS_PASSWORD = getIniData("keystore", "KEY_ALIAS_PASSWORD");
         //远程APK地址
-        REMOTE_APK_URL_PATH = getIniData(ini, "apk", "url");
+        REMOTE_APK_URL_PATH = getIniData("apk", "url");
         //APK加固后版本，360会自动识别到APP内的版本，所以这里必须一致
-        APK_VERSION = getIniData(ini, "apk", "version");
+        APK_VERSION = getIniData("apk", "version");
         //放到云端的命名
-        APK_CLOUD_TARGET_NAME = getIniData(ini, "apk", "cloudTargetName");
+        APK_CLOUD_TARGET_NAME = getIniData("apk", "cloudTargetName");
         //本地目标文件路径
-        LOCAL_DEST_FILE_PATH = getIniData(ini, "apk", "destFilePath");
+        LOCAL_DEST_FILE_PATH = getIniData("apk", "destFilePath");
         //本地目标文件名称
-        LOCAL_DEST_FILE_NAME = getIniData(ini, "apk", "destFileName");
+        LOCAL_DEST_FILE_NAME = getIniData("apk", "destFileName");
         //七牛容器绑定域名
-        BUCKET_DOMAIN_URL = getIniData(ini, "qiniu", "BUCKET_DOMAIN_URL");
+        BUCKET_DOMAIN_URL = getIniData("qiniu", "BUCKET_DOMAIN_URL");
         //七牛容器绑定域名
-        BUCKET_DOMAIN_URL = getIniData(ini, "qiniu", "BUCKET_DOMAIN_URL");
+        BUCKET_DOMAIN_URL = getIniData("qiniu", "BUCKET_DOMAIN_URL");
         //加固渠道名称组
-        QUDAO_NAMES_STRING = getIniData(ini, "qudao", "qudaoNames");
+        QUDAO_NAMES_STRING = getIniData("qudao", "qudaoNames");
 
         //运行之前清空APK文件夹
         ZipApk.delFile(new File(LOCAL_DEST_FILE_PATH));
@@ -197,17 +198,5 @@ public class ApkOperation {
 
     public ApkOperation() {
 
-    }
-
-    /**
-     * 从INI数组中读取字段并返回
-     *
-     * @param iniData      Map数组
-     * @param levelOneName 一级名称
-     * @param levelTwoName 二级名称
-     * @return String 二级键值
-     */
-    private static String getIniData(Map<String, Object> iniData, String levelOneName, String levelTwoName) {
-        return ((Map<String, String>) iniData.get(levelOneName)).get(levelTwoName);
     }
 }

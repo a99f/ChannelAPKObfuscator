@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.a99f.pack.constans.Constans.INI_PATH;
+
 public class ReadINI {
     /**
      * 去除ini文件中的注释，以";"或"#"开头，顺便去除UTF-8等文件的BOM头
@@ -131,5 +133,28 @@ public class ReadINI {
         return result;
 
 
+    }
+
+    /**
+     * 从INI数组中读取字段并返回
+     *
+     * @param iniData      Map数组
+     * @param levelOneName 一级名称
+     * @param levelTwoName 二级名称
+     * @return String 二级键值
+     */
+    public static String getIniData(Map<String, Object> iniData, String levelOneName, String levelTwoName) {
+        return ((Map<String, String>) iniData.get(levelOneName)).get(levelTwoName);
+    }
+
+    /**
+     * 从INI数组中读取字段并返回
+     * @param levelOneName 一级名称
+     * @param levelTwoName 二级名称
+     * @return
+     */
+    public static String getIniData(String levelOneName,String levelTwoName){
+        Map<String, Object> ini = readIni(INI_PATH);
+        return ((Map<String, String>) ini.get(levelOneName)).get(levelTwoName);
     }
 }
